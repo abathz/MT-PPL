@@ -94,7 +94,7 @@ public class InvitationListViewer extends AbstractInvitationViewer {
         String input;
         String[] splitString;
         int pageSearch;
-        
+        long start=System.currentTimeMillis();
         //Algoritma
         while (!this.exitCalled) {
             this.printMenu();
@@ -127,6 +127,8 @@ public class InvitationListViewer extends AbstractInvitationViewer {
             }
         }
         System.out.println("Exiting...");
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu untuk melihat list: "+(end-start)+"(ms)");
     }
 
     @Override

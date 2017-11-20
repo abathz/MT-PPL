@@ -42,6 +42,7 @@ public class MeetingCreateViewer extends AbstractMeetingViewer {
 
     @Override
     public void handleInput(Scanner sc) {
+        long start=System.currentTimeMillis();
         String title, agenda, location, participant, importantParticipant, duration,
                 proposedDateStr, negotiationDeadlineStr;
         int i, durationInt;
@@ -342,6 +343,8 @@ public class MeetingCreateViewer extends AbstractMeetingViewer {
                 System.out.println("Meeting Saved");
             }
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu untuk menambahkan meeting: "+(end-start)+"(ms)");
     }
 
     public boolean isEmpty(String text) {

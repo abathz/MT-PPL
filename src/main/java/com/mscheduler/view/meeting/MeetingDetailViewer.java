@@ -34,7 +34,10 @@ public class MeetingDetailViewer extends AbstractMeetingViewer {
 
     @Override
     public void handleInput(Scanner sc, int meetingId) {
+        long start=System.currentTimeMillis();
         System.out.print(this.getText(meetingId));
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu melihat detail meeting: "+(end-start)+"(ms)");
         this.exit();
     }
 

@@ -36,7 +36,7 @@ public class UserAddViewer extends AbstractUserViewer {
         String cpassword, isAdmin;
         boolean stat, kondisi1, kondisi2, kondisi3, kondisi4, kondisi5;
         User usr;
-        
+        long start=System.currentTimeMillis();
         //Algoritma
         usr = new User();
         kondisi1 = false;
@@ -132,6 +132,10 @@ public class UserAddViewer extends AbstractUserViewer {
             System.out.println("Data NOT Saved !");
         }
         this.exit();
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu menambahkan user: "+ (end-start) +"(ms)");
     }
+  
+  
 
 }

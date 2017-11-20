@@ -25,7 +25,9 @@ public class RenegotiateMeetingViewer extends AbstractMeetingViewer {
 	}
 
 	public void handleInput(Scanner sc) {
-
+            long start=System.currentTimeMillis();
+            long end=System.currentTimeMillis();
+            System.out.println("Waktu mengubah jadwal negosiasi: "+(end-start)+"(ms)");
 	}
 
 }

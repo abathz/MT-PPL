@@ -87,6 +87,7 @@ public class UserListViewer extends AbstractUserViewer {
         String[] splitString;
         int pageSearch;
         
+        long start=System.currentTimeMillis();
         //Algoritma
         while (!this.exitCalled) {
             this.printMenu();
@@ -119,7 +120,8 @@ public class UserListViewer extends AbstractUserViewer {
             }
         }
         System.out.println("Exiting...");
-   
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu List User: "+ (end-start) +"(ms)");
     }
     
     @Override

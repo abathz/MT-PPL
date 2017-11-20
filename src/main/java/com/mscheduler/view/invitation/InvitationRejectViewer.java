@@ -34,6 +34,7 @@ public class InvitationRejectViewer extends AbstractInvitationViewer {
 
     @Override
     public void handleInput(Scanner sc, int meeting_id) {
+        long start=System.currentTimeMillis();
         if (ic.isMeetingIdValid(meeting_id,true)) {
             super.handleInput(sc, meeting_id);
             //Kamus
@@ -56,6 +57,8 @@ public class InvitationRejectViewer extends AbstractInvitationViewer {
         }else{
              System.out.println("Invalid meeting id");
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu untuk menolak invitation: "+(end-start)+"(ms)");
         
     }
 

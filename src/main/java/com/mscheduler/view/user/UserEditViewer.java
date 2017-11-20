@@ -36,6 +36,7 @@ public class UserEditViewer extends AbstractUserViewer {
         boolean flag, kondisi1, kondisi2;
         User usr, usrE;
         int stat;
+        long start=System.currentTimeMillis();
 
         //Algoritma
         usrE = new User();
@@ -146,8 +147,10 @@ public class UserEditViewer extends AbstractUserViewer {
                     this.exit();
                 } else {
                     System.out.println("Unknown Command!");
-                }
+                } 
             }
+            long end=System.currentTimeMillis();
+            System.out.println("Waktu untuk mengubah user: "+(end-start)+"(ms)");
         }
     }
 

@@ -53,6 +53,7 @@ public class MeetingEditViewer extends AbstractMeetingViewer {
             Meeting m = this.meetingController.detailMeeting(meeting_id);
             String text[];
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
+            long start=System.currentTimeMillis();
 
             if (m != null) {
                 while (!command.toLowerCase().equals("end")) {
@@ -244,6 +245,8 @@ public class MeetingEditViewer extends AbstractMeetingViewer {
                                 }
                             }
                         }
+                        long end=System.currentTimeMillis();
+                        System.out.println("Waktu untuk mengubah meeting: "+(end-start)+"(ms)");
                     }
                     System.out.print("> ");
                     command = sc.nextLine();

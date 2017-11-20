@@ -37,7 +37,7 @@ public class RunSchedulerViewer extends AbstractMeetingViewer {
         String input;
         Meeting meeting;
         int respon;
-        
+        long start=System.currentTimeMillis();
         //Algoritma
         meeting = this.meetingController.detailMeeting(meeting_id);
         if (meeting != null) {
@@ -63,7 +63,10 @@ public class RunSchedulerViewer extends AbstractMeetingViewer {
             }
         }else{
              System.out.println("Invalid meeting id");
+             
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu mengubah jadwal: "+(end-start)+"(ms)");
         
     }
 

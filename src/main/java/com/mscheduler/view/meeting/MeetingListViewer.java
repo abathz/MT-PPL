@@ -91,6 +91,7 @@ public class MeetingListViewer extends AbstractMeetingViewer {
         String input;
         String[] splitString;
         int pageSearch;
+        long start=System.currentTimeMillis();
         //Algoritma
         while (!this.exitCalled) {
 //            System.out.print(this.getText());
@@ -124,6 +125,8 @@ public class MeetingListViewer extends AbstractMeetingViewer {
             }
         }
         System.out.println("Exiting...");
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu melihat list meeting: "+(end-start)+"(ms)");
     }
     
     @Override

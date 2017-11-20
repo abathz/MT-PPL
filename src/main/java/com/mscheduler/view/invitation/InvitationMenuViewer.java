@@ -31,11 +31,12 @@ public class InvitationMenuViewer extends AbstractInvitationViewer {
         
     @Override
     public void handleInput(Scanner sc) {
+        long start=System.currentTimeMillis();
         //Kamus
         String input;
         String[] inputParse;
         AbstractInvitationViewer view;
-
+        
         //Algoritma
         while (!this.exitCalled) {
             System.out.println("----------------------------------------------------------");
@@ -62,6 +63,8 @@ public class InvitationMenuViewer extends AbstractInvitationViewer {
             }
             
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu melihat menu: "+(end-start)+"(ms)");
     }
     
     public AbstractInvitationViewer getView(String command){

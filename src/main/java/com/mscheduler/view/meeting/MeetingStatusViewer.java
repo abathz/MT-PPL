@@ -53,7 +53,7 @@ public class MeetingStatusViewer extends AbstractMeetingViewer {
         //Kamus
         String input;
         Meeting meeting;
-        
+        long start=System.currentTimeMillis();
         //Algoritma
         meeting = this.meetingController.detailMeeting(meeting_id);
         if (meeting != null) {
@@ -81,7 +81,8 @@ public class MeetingStatusViewer extends AbstractMeetingViewer {
         }else{
              System.out.println("Invalid meeting id");
         }
-        
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu melihat status meeting: "+(end-start)+"(ms)");
     }
 
     @Override

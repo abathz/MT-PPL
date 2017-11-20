@@ -45,6 +45,7 @@ public class InvitationAcceptViewer extends AbstractInvitationViewer {
 
     @Override
     public void handleInput(Scanner sc, int meeting_id) {
+        long start=System.currentTimeMillis();
         if (ic.isMeetingIdValid(meeting_id,true)) {
             super.handleInput(sc, meeting_id);
         
@@ -88,6 +89,8 @@ public class InvitationAcceptViewer extends AbstractInvitationViewer {
         }else{
             System.out.println("Invalid meeting id");
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu untuk menerima meeting dari invitation: "+(end-start)+"(ms)");
     }
 
     @Override

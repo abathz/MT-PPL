@@ -54,6 +54,7 @@ public class UserDeleteViewer extends AbstractUserViewer {
     public void handleInput(Scanner sc, String email) {
         User usrE;
         usrE = new User();
+        long start= System.currentTimeMillis();
         if (!usrE.BooleanReadUser(email)) {
             System.out.println("Email not found.");
             return;
@@ -88,6 +89,8 @@ public class UserDeleteViewer extends AbstractUserViewer {
             }
         } while (!input.equalsIgnoreCase("y") && !input.equalsIgnoreCase("n"));
         sc.nextLine();
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu menghapus user: "+(end-start)+"(ms)" );
     }
 
     @Override

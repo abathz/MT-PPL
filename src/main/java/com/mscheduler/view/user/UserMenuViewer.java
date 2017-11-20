@@ -49,6 +49,7 @@ public class UserMenuViewer extends AbstractUserViewer {
         }
          */
         System.out.println("Welcome to Meeting Scheduler");
+        long start=System.currentTimeMillis();
         while (!flag) {
             System.out.print("Please enter your email : ");
             input = sc.nextLine();
@@ -56,7 +57,7 @@ public class UserMenuViewer extends AbstractUserViewer {
             inputPassword = sc.nextLine();
 //            char[] pwd = cnsl.readPassword("Please enter your password :");
 //            inputPassword = new String(pwd);
-
+            
             stat = uc.checkLogin(input, inputPassword);
             if (stat.equals("0")) {
                 System.out.println("Invalid email or password, please try again.");
@@ -82,6 +83,8 @@ public class UserMenuViewer extends AbstractUserViewer {
                 }
             }
         }
+        long end=System.currentTimeMillis();
+        System.out.println("Waktu Login: "+ (end-start) +"(ms)");
         return res+"~"+input;
     }
 
