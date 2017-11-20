@@ -24,223 +24,223 @@ import java.util.logging.Logger;
 
 public class UserController extends AbstractController {
 
-    int maxPage;
+  int maxPage;
 
-    //singleton + constructor
-        private static UserController instance;
+  //singleton + constructor
+  private static UserController instance;
 
-        static{
-            instance = new UserController();
-        }
+  static {
+    instance = new UserController();
+  }
 
-        public static UserController getInstance(){
-          return instance;
-        }
-        
-        private UserController() {
-            super();
-        }
-    //end of singleton
+  public static UserController getInstance() {
+    return instance;
+  }
 
-    public List<User> loadUser() {
-        try {
-            ArrayList<User> user_list = mapper.readValue(new File(Config.DATA_USER_INDEX), new TypeReference<ArrayList<User>>() {
-            });
-            return user_list;
-        } catch (IOException ex) {
-            Logger.getLogger(InvitationController.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+  private UserController() {
+    super();
+  }
+  //end of singleton
+
+  public List<User> loadUser() {
+    try {
+      ArrayList<User> user_list = mapper.readValue(new File(Config.DATA_USER_INDEX), new TypeReference<ArrayList<User>>() {
+      });
+      return user_list;
+    } catch (IOException ex) {
+      Logger.getLogger(InvitationController.class.getName()).log(Level.SEVERE, null, ex);
+      return null;
     }
+  }
 
-    public List<User> listUser() {
-        //Kamus
-        String email;
-        List<Integer> list;
-        List<User> result;
-        String meeting_title;
-        User user_email;
+  public List<User> listUser() {
+    //Kamus
+    String email;
+    List<Integer> list;
+    List<User> result;
+    String meeting_title;
+    User user_email;
 
-        //Algoritma
-        email = (this.getSession() != null) ? this.getSession().getEmail() : "";
-        result = new ArrayList<>();
+    //Algoritma
+    email = (this.getSession() != null) ? this.getSession().getEmail() : "";
+    result = new ArrayList<>();
 
-        result = this.loadUser();
-        return result;
-    }
+    result = this.loadUser();
+    return result;
+  }
 
-    public String listUsersAll() {
-        User usr = new User();
-        return usr.readAll();
-    }
-    
-    public String listUserAll(int page) {
-        int i,LastIndex;
-        String str = "";
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            LastIndex = 0;
+  public String listUsersAll() {
+    User usr = new User();
+    return usr.readAll();
+  }
 
-            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(LastIndex);
-            List<User> list = this.loadUser();
+  public String listUserAll(int page) {
+    int i, LastIndex;
+    String str = "";
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      LastIndex = 0;
 
-            i = LastIndex;
-            for (User u : list) {
-                str += u.getEmail() + "\n";
-                i--;
-            }
+      String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(LastIndex);
+      List<User> list = this.loadUser();
 
-            System.out.println(list);
+      i = LastIndex;
+      for (User u : list) {
+        str += u.getEmail() + "\n";
+        i--;
+      }
 
-            this.maxPage = LastIndex;
-            str = "";
-            if (this.maxPage == 1) {
-                str = Utilities.getPage(str, 1) + "\n";
-                UserController usr = new UserController();
-            } else {
-                str = "-----------\n"
-                        + "Page " + page + " of " + this.maxPage + "\n"
-                        + "-----------\n";
+      System.out.println(list);
 
-                if (page < this.maxPage) {
-                    str += Utilities.getPage(str, page) + "\n"
-                            + "----more----\n";
-                } else {
-                    str += Utilities.getPage(str, page) + "\n";
-                }
-            }
+      this.maxPage = LastIndex;
+      str = "";
+      if (this.maxPage == 1) {
+        str = Utilities.getPage(str, 1) + "\n";
+        UserController usr = new UserController();
+      } else {
+        str = "-----------\n"
+                + "Page " + page + " of " + this.maxPage + "\n"
+                + "-----------\n";
 
-        } catch (IOException ex) {
-            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return str;
-    }
-
-    public boolean addUser(User usr) {
-        boolean flag;
-        flag = usr.saving();
-        return flag;
-    }
-
-    public String checkLogin(String email, String pass) {
-        String stat;
-        User usr = new User();
-
-        usr.setEmail(email);
-        usr.setPassword(pass);
-        stat = usr.checkLoginDb(usr);
-
-        return stat;
-    }
-
-    public boolean editUser(String email, User user) {
-        return false;
-    }
-
-    public int userEditAll(String email, User usr) {
-        //kamus
-        int stat;
-        User dbUser;
-
-        //init
-        dbUser = new User();
-        dbUser.readUserOne(email);
-        stat = 0;
-
-        //algo
-        if (dbUser.editAll(usr)) {
-            stat = 1;
+        if (page < this.maxPage) {
+          str += Utilities.getPage(str, page) + "\n"
+                  + "----more----\n";
         } else {
-            stat = 0;
+          str += Utilities.getPage(str, page) + "\n";
         }
+      }
 
-        return stat;
+    } catch (IOException ex) {
+      Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return str;
+  }
+
+  public boolean addUser(User usr) {
+    boolean flag;
+    flag = usr.saving();
+    return flag;
+  }
+
+  public String checkLogin(String email, String pass) {
+    String stat;
+    User usr = new User();
+
+    usr.setEmail(email);
+    usr.setPassword(pass);
+    stat = usr.checkLoginDb(usr);
+
+    return stat;
+  }
+
+  public boolean editUser(String email, User user) {
+    return false;
+  }
+
+  public int userEditAll(String email, User usr) {
+    //kamus
+    int stat;
+    User dbUser;
+
+    //init
+    dbUser = new User();
+    dbUser.readUserOne(email);
+    stat = 0;
+
+    //algo
+    if (dbUser.editAll(usr)) {
+      stat = 1;
+    } else {
+      stat = 0;
     }
 
-    public int userEditOne(String email, String condition, User usr) {
-        //kamus
-        int stat;
-        User dbUser;
+    return stat;
+  }
 
-        //init
-        dbUser = new User();
-        dbUser.readUserOne(email);
-        stat = 0;
+  public int userEditOne(String email, String condition, User usr) {
+    //kamus
+    int stat;
+    User dbUser;
 
-        //algo
-        if (condition.equalsIgnoreCase("email")) {
-            stat = 2;
-        } else if (dbUser.editOne(condition,usr)) {
-            stat = 1;
+    //init
+    dbUser = new User();
+    dbUser.readUserOne(email);
+    stat = 0;
+
+    //algo
+    if (condition.equalsIgnoreCase("email")) {
+      stat = 2;
+    } else if (dbUser.editOne(condition, usr)) {
+      stat = 1;
+    } else {
+      stat = 0;
+    }
+
+    return stat;
+  }
+
+  public int intEditUser(String email) {
+    //0 not found, 1 data saved, 2email cant,unknown
+    //name,email,pass,email(2)cant
+    //kamus 
+    User usr = new User();
+    int stat;
+
+    //algo
+    stat = 0;
+    usr.del();
+
+    return stat;
+  }
+
+  public int delUser(String email) {
+    int stat;
+    User usr = new User();
+    usr = usr.readUserOne(email);
+    stat = 0;
+
+    if (this.existUser(email)) {
+      if (usr.lastAdmin()) {
+        stat = 2;
+      } else {
+        if (usr.del()) {
+          //checkdel
+          stat = 1;
         } else {
-            stat = 0;
+          stat = 3;
         }
-
-        return stat;
+      }
+    } else {
+      stat = 0;
     }
 
-    public int intEditUser(String email) {
-        //0 not found, 1 data saved, 2email cant,unknown
-        //name,email,pass,email(2)cant
-        //kamus 
-        User usr = new User();
-        int stat;
+    return stat;
+  }
 
-        //algo
-        stat = 0;
-        usr.del();
-
-        return stat;
+  public User login(String email, String password) {
+    User usr = new User();
+    if (existUser(email)) {
+      if (usr.BooleanReadPass(email, password)) {
+        usr.readUserOne(email);
+      }
     }
+    return usr;
+  }
 
-    public int delUser(String email) {
-        int stat;
-        User usr = new User();
-        usr = usr.readUserOne(email);
-        stat = 0;
-
-        if (this.existUser(email)) {
-            if (usr.lastAdmin()) {
-                stat = 2;
-            } else {
-                if (usr.del()) {
-                    //checkdel
-                    stat = 1;
-                } else {
-                    stat = 3;
-                }
-            }
-        } else {
-            stat = 0;
-        }
-
-        return stat;
+  private User findUser(String email) {       //cari user
+    User usr = new User();
+    if (existUser(email)) {
+      usr.readUserOne(email);
     }
+    return usr;
+  }
 
-    public User login(String email, String password) {
-        User usr = new User();
-        if (existUser(email)) {
-            if (usr.BooleanReadPass(email,password)) {
-                usr.readUserOne(email);
-            }
-        }
-        return usr;
-    }
+  public User getUserByEmail(String email) {
+    return this.loadUser().stream().filter(x -> x.getEmail().equals(email)).findFirst().orElse(null);
+  }
 
-    private User findUser(String email) {       //cari user
-        User usr = new User();
-        if (existUser(email)) {
-            usr.readUserOne(email);
-        }
-        return usr;
-    }
-    
-    public User getUserByEmail(String email) {
-        return this.loadUser().stream().filter(x->x.getEmail().equals(email)).findFirst().orElse(null);
-    }
-
-    public boolean existUser(String email) {   //sudah ada
-        User usr = new User();
-        return usr.BooleanReadUser(email);
-    }
+  public boolean existUser(String email) {   //sudah ada
+    User usr = new User();
+    return usr.BooleanReadUser(email);
+  }
 }
