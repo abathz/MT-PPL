@@ -16,7 +16,19 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @SuiteClasses({
   TestLogin.class,
-  TestSelectRole.class
+  TestSelectRole.class,
+  TestAdminHelp.class,
+  TestAdminSelectedHelp.class,
+  TestAdminViewListUser.class,
+  TestAdminDeleteUser.class,
+  TestInitiatorHelp.class,
+  TestInitiatorSelectedHelp.class,
+  TestInitiatorViewListMeeting.class,
+  TestParticipantHelp.class,
+  TestParticipantSelectedHelp.class,
+  TestParticipantViewListInvitation.class,
+  TestLogout.class,
+  TestExit.class
 })
 
 public class TestSuite {

@@ -13,7 +13,6 @@ import com.mscheduler.controller.UserController;
 import com.mscheduler.model.User;
 import org.junit.*;
 import static org.junit.Assert.*;
-import org.junit.*;
 
 public class TestLogin{
   
@@ -31,12 +30,12 @@ public class TestLogin{
   }
 
   @Test
-  public void LoginSuccess() {
+  public void TestLoginSuccess() {
     assertTrue("Login Success!", this.user.checkLoginDb(this.user).equals("2"));
   }
   
   @Test
-  public void LoginFailed() {
+  public void TestLoginFailed() {
     assertTrue("Login Failed!", this.user.checkLoginDb(this.user).equals("0"));
   }
   
