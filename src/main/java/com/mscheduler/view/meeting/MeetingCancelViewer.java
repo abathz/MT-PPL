@@ -35,6 +35,7 @@ public class MeetingCancelViewer extends AbstractMeetingViewer {
         String respon;
         String d = this.getText(meeting_id);
         Meeting m = this.meetingController.detailMeeting(meeting_id);
+        long start=System.currentTimeMillis();
         
         if(m.getStatus() == MeetingStatus.canceled || m.getStatus() == MeetingStatus.finished || m.getStatus() == MeetingStatus.running){
             System.out.println("Error, meeting is already "+m.getStatus());
@@ -55,6 +56,8 @@ public class MeetingCancelViewer extends AbstractMeetingViewer {
                 this.meetingController.cancelMeeting(meeting_id);
                 System.out.println("Meeting Canceled");
             }
+            long end=System.currentTimeMillis();
+            System.out.println("waktu cancel meeting: "+(end-start)+"(ms)");
         }
     }
 

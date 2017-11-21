@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec <<< FAILURE!
+Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0 sec <<< FAILURE!
 LoginFailed(TestLogin)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Login Failed!
 	at org.junit.Assert.fail(Assert.java:88)
@@ -46,7 +46,7 @@ java.lang.AssertionError: Login Failed!
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-SelectRoleFailed(TestSelectRole)  Time elapsed: 0.004 sec  <<< FAILURE!
+SelectRoleFailed(TestSelectRole)  Time elapsed: 0 sec  <<< FAILURE!
 java.lang.AssertionError: Must select 1 role! Try Again
 	at org.junit.Assert.fail(Assert.java:88)
 	at org.junit.Assert.assertTrue(Assert.java:41)
